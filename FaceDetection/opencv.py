@@ -1,6 +1,7 @@
 import cv2
 
-haar_location = "C:/Program Files/OpenCV/sources/data/haarcascades/"
+
+haar_location = "/usr/local/share/OpenCV/haarcascades/"
 raw_capture = "../ImageCapture/"
 left_output = "output/left.jpg"
 right_output = "output/right.jpg"
