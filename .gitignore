@@ -35,4 +35,4 @@ FaceDetection/output/*
 #############
 /_ReSharper.*
 *.ReSharper.*
-.idea/*
+FaceDetection/.idea/*
