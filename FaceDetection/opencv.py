@@ -11,7 +11,7 @@ face_cascade = cv2.CascadeClassifier(haar_location + frontal_face)
 img_left = cv2.imread(raw_capture + left_output)
 img_right = cv2.imread(raw_capture + right_output)
 gray_left = cv2.cvtColor(img_left, cv2.COLOR_BGR2GRAY)
-gray_right = cv2.cvtColor(img_left, cv2.COLOR_BGR2GRAY)
+gray_right = cv2.cvtColor(img_right, cv2.COLOR_BGR2GRAY)
 
 left_faces = face_cascade.detectMultiScale(gray_left, 1.3, 5)
 
@@ -26,4 +26,8 @@ for (x, y, w, h) in right_faces:
     cv2.imwrite(right_output, crop_img)
 
 
+print("Left: ")
+print(left_faces)
 
+print("Right: ")
+print(right_faces)
