@@ -31,11 +31,8 @@ FaceDetection/output/*
 ###################
 *.Publish.xml
 #############
-# Resharper #
+# IDE #
 #############
 /_ReSharper.*
 *.ReSharper.*
-#############
-# IntelliJ  #
-#############
-.idea/
+.idea/*
