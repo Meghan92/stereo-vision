@@ -26,3 +26,8 @@ for (x, y, w, h) in right_faces:
 
 
 
+print("Left: ")
+print(left_faces)
+
+print("Right: ")
+print(right_faces)
