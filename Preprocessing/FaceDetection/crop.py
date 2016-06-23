@@ -1,4 +1,5 @@
 import cv2
+import imp
 
 project_path = "C:/Development/stereo-vision/"
 haar_location = "C:/Program Files/OpenCV/sources/data/haarcascades/"
@@ -34,3 +35,5 @@ print(left_faces)
 
 print("Right: ")
 print(right_faces)
+
+imp.load_source('strategy', project_path + 'Preprocessing/FaceDetection/strategy.py')
