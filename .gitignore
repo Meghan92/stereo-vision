@@ -41,3 +41,4 @@ FaceDetection/output/*
 # IntelliJ  #
 #############
 */.idea/*
+*.idea/*
