@@ -1,11 +1,11 @@
 import cv2
-import Preprocessing.FaceDetection.crop as crop
+import preprocessing.detection.crop as crop
 
 project_path = "C:/Development/stereo-vision/"
 haar_location = "C:/Program Files/OpenCV/sources/data/haarcascades/"
-raw_capture = project_path + "ImageCapture/"
-left_output = project_path + "FaceDetection/output/left"
-right_output = project_path + "FaceDetection/output/right"
+raw_capture = project_path + "capture/"
+left_output = project_path + "detection/output/left"
+right_output = project_path + "detection/output/right"
 frontal_face = "haarcascade_frontalface_default.xml"
 
 face_cascade = cv2.CascadeClassifier(haar_location + frontal_face)
