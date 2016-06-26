@@ -32,6 +32,8 @@ FaceDetection/output/*
 ###################
 *.Publish.xml
 *.gitignore.orig
+*/output/*
+*/*/output/*
 #############
 # Resharper #
 #############
