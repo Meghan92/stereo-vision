@@ -1,5 +1,5 @@
 import cv2
-import imp
+import Preprocessing.FaceDetection.crop as crop
 
 project_path = "C:/Development/stereo-vision/"
 haar_location = "C:/Program Files/OpenCV/sources/data/haarcascades/"
@@ -36,6 +36,6 @@ print(left_faces)
 print("Right: ")
 print(right_faces)
 
-imp.load_source('crop', project_path + 'Preprocessing/FaceDetection/crop.py')
+crop.run()
 
 

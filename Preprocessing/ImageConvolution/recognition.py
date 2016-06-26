@@ -1,2 +1,3 @@
-print("recognition")
+def run():
+    print("recognition")
 

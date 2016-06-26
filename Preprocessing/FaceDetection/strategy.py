@@ -1,17 +1,17 @@
 import glob
 import os
-import imp
+import Preprocessing.ImageConvolution.recognition as recognition
+import Preprocessing.ImageConvolution.verification as verification
 
-os.chdir("C:/Development/stereo-vision/Preprocessing/FaceDetection/output")
-images = glob.glob("*.jpg")
 
-count = 0
-for faces in images:
-    count += 1
+def run():
+    os.chdir("C:/Development/stereo-vision/Preprocessing/FaceDetection/output")
+    images = glob.glob("*.jpg")
+    count = images.__len__()
 
-people = count / 2
+    people = count / 2
 
-if people > 1:
-    imp.load_source('recognition', '../../ImageConvolution/recognition.py')
-else:
-    imp.load_source('verification', '../../ImageConvolution/verification.py')
+    if people > 1:
+        recognition.run()
+    else:
+        verification.run()

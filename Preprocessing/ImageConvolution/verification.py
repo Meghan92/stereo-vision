@@ -1,1 +1,2 @@
-print("verification")
+def run():
+    print("verification")
