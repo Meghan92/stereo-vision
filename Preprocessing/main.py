@@ -8,7 +8,9 @@ try:
     print("-----Cropping faces-----")
     crop.run(-1)
     print("-----Running strategy-----")
-    strategy.run()
+    convolution = strategy.run()
+    print("-----Convolving-----")
+    convolution.run()
 except ReferenceError as refError:
     print("A reference occurred: " + refError.message)
 

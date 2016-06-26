@@ -5,6 +5,6 @@ import preprocessing.detection.count as count
 
 def run():
     if count.faces() > 1:
-        recognition.run()
+        return recognition
     else:
-        verification.run()
+        return verification
