@@ -6,7 +6,7 @@ try:
     print("-----Detecting faces-----")
     detect.run()
     print("-----Cropping faces-----")
-    crop.run()
+    crop.run(-1)
     print("-----Running strategy-----")
     strategy.run()
 except ReferenceError as refError:
