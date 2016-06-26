@@ -1,41 +1,41 @@
 import cv2
-import preprocessing.detection.crop as crop
 
-project_path = "C:/Development/stereo-vision/"
-haar_location = "C:/Program Files/OpenCV/sources/data/haarcascades/"
-raw_capture = project_path + "capture/"
-left_output = project_path + "detection/output/left"
-right_output = project_path + "detection/output/right"
-frontal_face = "haarcascade_frontalface_default.xml"
 
-face_cascade = cv2.CascadeClassifier(haar_location + frontal_face)
-img_left = cv2.imread(raw_capture + "output/left.jpg")
-img_right = cv2.imread(raw_capture + "output/right.jpg")
+def run():
+    project_path = "C:/Development/stereo-vision/"
+    haar_location = "C:/Program Files/OpenCV/sources/data/haarcascades/"
+    raw_capture = project_path + "capture/"
+    left_output = project_path + "preprocessing/detection/output/left"
+    right_output = project_path + "preprocessing/detection/output/right"
+    frontal_face = "haarcascade_frontalface_default.xml"
 
-left_faces = face_cascade.detectMultiScale(img_left, 1.3, 5)
+    face_cascade = cv2.CascadeClassifier(haar_location + frontal_face)
+    img_left = cv2.imread(raw_capture + "output/left.jpg")
+    img_right = cv2.imread(raw_capture + "output/right.jpg")
 
-i = 0
+    left_faces = face_cascade.detectMultiScale(img_left, 1.3, 5)
 
-for (x, y, w, h) in left_faces:
-    ++i
-    crop_img = img_left[y:y+h, x:x+w]
-    cv2.imwrite(left_output + "_" + str(i) + ".jpg", crop_img)
+    i = 0
 
-right_faces = face_cascade.detectMultiScale(img_right, 1.3, 5)
+    for (x, y, w, h) in left_faces:
+        i += 1
+        crop_img = img_left[y:y+h, x:x+w]
+        cv2.imwrite(left_output + "_" + str(i) + ".jpg", crop_img)
 
-i = 0
+    right_faces = face_cascade.detectMultiScale(img_right, 1.3, 5)
 
-for (x, y, w, h) in right_faces:
-    ++i
-    crop_img = img_right[y:y+h, x:x+w]
-    cv2.imwrite(right_output + "_" + str(i) + ".jpg", crop_img)
+    i = 0
 
-print("Left: ")
-print(left_faces)
+    for (x, y, w, h) in right_faces:
+        i += 1
+        crop_img = img_right[y:y+h, x:x+w]
+        cv2.imwrite(right_output + "_" + str(i) + ".jpg", crop_img)
 
-print("Right: ")
-print(right_faces)
+    print("Left: ")
+    print(left_faces)
 
-crop.run()
+    print("Right: ")
+    print(right_faces)
+
 
 

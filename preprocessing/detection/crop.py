@@ -1,9 +1,9 @@
-import glob
+import preprocessing.detection.count as count
 
 
 def run():
-    images = glob.glob("*.jpg")
-    count = images.__len__()
+    length = count.images()
 
-    if count == 0:
+    if length == 0:
         raise ReferenceError("No jpg files were found")
+
