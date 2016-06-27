@@ -4,12 +4,13 @@ import cv2
 
 # returns an array of images in the output folder
 def get():
-    path = os.path.dirname(os.path.realpath("../preprocessing/convolution/output"))
+    path = os.path.dirname(os.path.realpath(__file__))
+    output_path = os.path.join(path, "output")
     images = []
 
-    for filename in os.listdir("../preprocessing/convolution/output"):
+    for filename in os.listdir(output_path):
         if filename.endswith(".jpg"):
-            location = os.path.join(os.path.join(path, "output"), filename)
+            location = os.path.join(output_path, filename)
             output = cv2.imread(location)
             images.append(FaceData(filename, output))
 
