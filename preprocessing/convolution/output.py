@@ -2,8 +2,8 @@ import os
 import cv2
 
 
-# returns an array of images in the output folder
-def get():
+# returns an array of images in the output folder with a specified fpb resolution
+def get(resolution=4):
     path = os.path.dirname(os.path.realpath(__file__))
     output_path = os.path.join(path, "output")
     images = []
@@ -12,13 +12,14 @@ def get():
         if filename.endswith(".jpg"):
             location = os.path.join(output_path, filename)
             output = cv2.imread(location)
-            images.append(FaceData(filename, output))
+            images.append(FaceData(filename, output, resolution))
 
     return images
 
 
 class FaceData(object):
     """__init__() functions as the class constructor"""
-    def __init__(self, name=None, image=None):
+    def __init__(self, name=None, image=None, resolution=4):
         self.name = name
         self.image = image
+        self.resolution = resolution
