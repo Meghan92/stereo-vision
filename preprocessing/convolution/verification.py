@@ -1,20 +1,14 @@
-import cv2
-import os
 import preprocessing.convolution.base as base
+import preprocessing.detection.output as output_detection
 
 
 def run():
-    path = os.path.dirname(os.path.realpath(__file__))
-    for filename in os.listdir("detection/output"):
-        convolve(path, filename)
+    face_data = output_detection.get()
+    for data in face_data:
+        convolve(data.name, data.image)
 
 
-def convolve(path, filename):
-    location = os.path.join(os.path.join(path, "output"), filename)
-    l = filename.__len__()
-    new_name = filename[0:l - 4] + "_gray.jpg"
-
-    gray = cv2.cvtColor(cv2.imread(location), cv2.COLOR_RGB2GRAY)
-    cv2.imwrite("convolution/output/" + new_name, gray)
-
-    base.convolve(gray, "convolution/output/" + new_name)
+def convolve(name, image):
+    filename_length = name.__len__()
+    new_name = name[0:filename_length - 4] + "_gray.jpg"
+    base.convolve(image, "convolution/output/" + new_name)
