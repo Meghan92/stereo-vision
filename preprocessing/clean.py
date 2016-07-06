@@ -1,7 +1,8 @@
-import os
+import preprocessing.detection.output as detection
+import preprocessing.convolution.output as convolution
 
 
 def run():
-    path = os.path.dirname(os.path.realpath("convolution/output"))
-    for files in os.listdir("convolution/output"):
-        os.remove(os.path.join(os.path.join(path, "output"), files))
+    detection.clean()
+    convolution.clean()
+
