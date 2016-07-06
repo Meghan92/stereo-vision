@@ -7,13 +7,13 @@ try:
     print("-----Detecting faces-----")
     detect.run()
     print("-----Cropping faces-----")
-    crop.run(-1)
+    crop.run(16)
     print("-----Running strategy-----")
     convolution = strategy.run()
     print("-----Convolving-----")
     convolution.run()
     print("-----Clean up-----")
-    clean.run()
+    # clean.run()
 except ReferenceError as refError:
     print("A reference occurred: " + refError.message)
 
