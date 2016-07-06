@@ -39,5 +39,5 @@ def algorithm(face_data):
         fpb_list.append(count)
 
     text = open("output/bytes.txt", "a")
-    text.write("\"" + face_data.name + "\"" + "," + str(fpb_list) + "\n")
+    text.write(face_data.name + ";" + str(fpb_list) + "\n")
     text.close()
