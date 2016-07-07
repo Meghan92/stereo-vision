@@ -8,11 +8,11 @@ try:
     print("-----Detecting faces in training set-----")
     for i in range(1, 91):
         environment = detect_config.Environment(
-            detect_config.Windows("training/taiwan/" + str(i) + "/left.jpg", "left" + str(i) + ".jpg"))
+            detect_config.Windows("training/taiwan/" + str(i) + "/left.jpg", "left_" + str(i) + ".jpg"))
         detect.run(environment)
         print(environment.capture)
         environment = detect_config.Environment(
-            detect_config.Windows("training/taiwan/" + str(i) + "/right.jpg", "right" + str(i) + ".jpg"))
+            detect_config.Windows("training/taiwan/" + str(i) + "/right.jpg", "right_" + str(i) + ".jpg"))
         detect.run(environment)
         print(environment.capture)
     print("-----Cropping faces-----")
