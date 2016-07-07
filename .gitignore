@@ -34,6 +34,7 @@ FaceDetection/output/*
 *.gitignore.orig
 */output/*
 */*/output/*
+**/capture/training/**
 **/Thumbs.db
 #############
 # Resharper #
