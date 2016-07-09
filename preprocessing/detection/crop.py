@@ -1,4 +1,4 @@
-import preprocessing.detection.count as count
+import count
 import cv2
 import os
 

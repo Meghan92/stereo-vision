@@ -18,7 +18,3 @@ def run():
         text.write(str(array))
     text.close()
     return input_array
-
-
-
-

@@ -1,12 +1,13 @@
 import cv2
-import preprocessing.convolution.base as base
-import preprocessing.detection.output as output_detection
+import convolution.base as base
+import detection.output as output_detection
 
 
 def run():
-    face_data = output_detection.get()
-    for data in face_data:
-        convolve(data.name, data.image)
+	print("- recognition")
+	face_data = output_detection.get()
+	for data in face_data:
+		convolve(data.name, data.image)
 
 
 def convolve(name, image):
@@ -17,8 +18,6 @@ def convolve(name, image):
     base.convolve(b, "convolution/output/" + new_name + "_blue.jpg")
     base.convolve(g, "convolution/output/" + new_name + "_green.jpg")
     base.convolve(r, "convolution/output/" + new_name + "_red.jpg")
-
-
 
 
 

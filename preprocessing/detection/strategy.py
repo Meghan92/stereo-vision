@@ -1,6 +1,6 @@
-import preprocessing.convolution.recognition as recognition
-import preprocessing.convolution.verification as verification
-import preprocessing.detection.count as count
+import convolution.recognition as recognition
+import convolution.verification as verification
+import detection.count as count
 
 
 def run():

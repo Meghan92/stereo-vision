@@ -6,6 +6,7 @@ def run(environment):
     img = cv2.imread(environment.capture)
     faces = face_cascade.detectMultiScale(img, 1.3, 5)
     i = 0
+    print(environment.output)
     for (x, y, w, h) in faces:
         i += 1
         crop_img = img[y:y+h, x:x+w]

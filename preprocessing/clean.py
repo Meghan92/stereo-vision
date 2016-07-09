@@ -1,5 +1,5 @@
-import preprocessing.detection.output as detection
-import preprocessing.convolution.output as convolution
+import detection.output as detection
+import convolution.output as convolution
 
 
 def run():
