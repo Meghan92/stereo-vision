@@ -9,10 +9,10 @@ import clean
 
 try:
     print("-----Detecting faces in training set-----")
-    for i in range(1, 51):
+    for i in range(1, 91):
         environment = detect_config.Environment(
             detect_config.Ubuntu("training/taiwan/" + str(i) + "/left.jpg", "left_" + str(i) + ".jpg"))
-        print(environment.capture)
+	detect.run(environment)
         environment = detect_config.Environment(
             detect_config.Ubuntu("training/taiwan/" + str(i) + "/right.jpg", "right_" + str(i) + ".jpg"))
         detect.run(environment)
