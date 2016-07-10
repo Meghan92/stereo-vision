@@ -9,12 +9,12 @@ import cv2
 	dataset.data / 255.0, dataset.target.astype("int0"), test_size = 0.33)
 
 dbn = DBN(
-	[64, 25, 1],
+	[64, 32, 1],
 	learn_rates = 0.3,
 	learn_rate_decays = 0.9,
 	epochs = 10,
 	verbose = 1)
 dbn.fit(trainX, trainY)
 
-preds = dbn.predict(testX)
-print classification_report(testY, preds)
+# preds = dbn.predict(testX)
+# print classification_report(testY, preds)
