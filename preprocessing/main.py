@@ -5,8 +5,9 @@ import detection.config as detect_config
 import clean
 
 try:
-	config_left = ["output/left.jpg", "left.jpg"]
-	config_right = ["output/right.jpg", "right.jpg"]
+	taiwan = "training/taiwan spoof/1/"
+	config_left = ["output/left.jpg", "spoofleft.jpg"]
+	config_right = ["output/right.jpg", "spoofright.jpg"]
 	left_os = detect_config.Environment(detect_config.Ubuntu(config_left[0], config_left[1]))
 	right_os = detect_config.Environment(detect_config.Ubuntu(config_right[0], config_right[1]))
 	print("-----Detecting faces-----")

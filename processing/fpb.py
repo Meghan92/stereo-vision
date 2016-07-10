@@ -49,7 +49,7 @@ def loop(increment, length, breadth, image):
 	
 
 def normalise(x, min, max):
-	return (((x - min) / float(max - min)) * 2) -1
+	return (x - min) / float(max - min)
 	
 	
 def write(name, list):
