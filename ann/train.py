@@ -6,8 +6,8 @@ import numpy as np
 import cv2
 
 
-def run(input, output):
-	(trainX, testX, trainY, testY) = train_test_split(input, output)
+def run(_input, _output):
+	(trainX, testX, trainY, testY) = train_test_split(_input, _output)
 
 	dbn = DBN(
 		[64, 32, 1],

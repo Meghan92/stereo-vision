@@ -10,7 +10,6 @@ line = "---------------------------------------------"
 
 # print(line + "\nrunning local binary pattern\n" + line)
 # lbp.run()
-# print(line + "\nrunning face pattern byte\n" + line)
+print(line + "\nrunning face pattern byte\n" + line)
 fpb.run(16)
-
 format.run()

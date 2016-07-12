@@ -20,8 +20,6 @@ try:
 	crop.run(16)
 	print("-----Convolving-----")
 	verify.run()
-	print("-----Clean up-----")
-	# clean.run()
 except ReferenceError as refError:
 	print("A reference occurred: " + refError.message)
 

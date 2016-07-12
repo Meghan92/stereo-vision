@@ -1,4 +1,4 @@
-import processing.output as output
+import preprocessing.convolution.output as output
 import numpy as np
 
 
