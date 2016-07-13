@@ -10,7 +10,7 @@ def run(_input, _output):
 	(trainX, testX, trainY, testY) = train_test_split(_input, _output)
 
 	dbn = DBN(
-		[64, 32, 1],
+		[64, 32, 2],
 		learn_rates = 0.3,
 		learn_rate_decays = 0.9,
 		epochs = 10,

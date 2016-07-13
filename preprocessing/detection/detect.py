@@ -2,6 +2,7 @@ import cv2
 
 
 def run(environment):
+	print(environment.capture)
 	face_cascade = cv2.CascadeClassifier(environment.haar_xml)
 	img = cv2.imread(environment.capture)
 	faces = face_cascade.detectMultiScale(img, 1.3, 5)
