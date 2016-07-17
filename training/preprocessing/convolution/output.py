@@ -6,7 +6,7 @@ import constants
 
 
 # returns an array of images in the output folder with a specified fpb resolution
-def get(resolution=constants.LINE):
+def get(resolution=constants.RESOLUTION):
     path = os.path.dirname(os.path.realpath(__file__))
     output_path = os.path.join(path, "output")
     images = []

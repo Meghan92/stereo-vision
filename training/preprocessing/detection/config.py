@@ -18,6 +18,6 @@ class Windows(object):
 class Ubuntu(object):
 	def __init__(self, input_location, output_name):
 		self.haar = "/usr/share/opencv/haarcascades/"
-		self.path = "/home/meghan/Development/stereo-vision/"
+		self.path = "/home/meghan/Development/stereo-vision/training/"
 		self.input = input_location
 		self.output = output_name

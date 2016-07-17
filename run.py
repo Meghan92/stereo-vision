@@ -3,6 +3,7 @@ import training.capture.output as capture_output
 import cmd
 import training.constants as constants
 import training.preprocessing.training as preprocess_training
+import training.preprocessing.main as preprocess
 
 
 print constants.LINE + "Capturing Face" + constants.LINE
@@ -11,6 +12,17 @@ input = raw_input("Press any key when ready: ")
 print constants.LINE + "Saving capture" + constants.LINE
 input = raw_input("Would you like to save your images to the database for training? (y/n): ").lower()
 if input == "y":
+	train()
+else:
+	test()
+	
+	
+def test():
+	print constants.LINE + "Preprocessing" + constants.LINE
+	preprocess.run()
+	
+	
+def train():
 	paths = capture_output.get_database_paths()
 	count = 0
 	print "The following databases are: "
@@ -25,6 +37,5 @@ if input == "y":
 	print "Your image has been saved to the \"%s\" database, which now has %s records" % (filename, number)
 	input = raw_input("Would you like to run the training network? (y/n): ")
 	if input == "y":
-		print "Processing, please wait patiently..."
+		print constants.LINE + "Preprocessing, please wait patiently..." + constants.LINE
 		preprocess_training.run()
-

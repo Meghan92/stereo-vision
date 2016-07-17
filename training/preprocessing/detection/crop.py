@@ -1,6 +1,9 @@
 import count
 import cv2
 import os
+import sys
+sys.path.append(os.path.join(os.path.join(os.path.dirname(__file__), '..'), '..'))
+import constants
 
 
 def run(resolution):
@@ -8,10 +11,11 @@ def run(resolution):
     if length == 0:
         raise ReferenceError("No jpg files were found")
     if resolution <= 0:
-        resolution = 4
+        resolution = constants.RESOLUTION
     path = os.path.dirname(os.path.realpath(__file__))
-    for filename in os.listdir("detection/output"):
-        location = os.path.join(os.path.join(path, "output"), filename)
+    output_path = os.path.join(path, "output")
+    for filename in os.listdir(output_path):
+        location = os.path.join(output_path, filename)
         resize(cv2.imread(location), location, resolution)
 
 
