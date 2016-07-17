@@ -5,17 +5,20 @@ from nolearn.dbn import DBN
 import numpy as np
 import cv2
 import cPickle as pickle
+import os
 
 
 def run(_input, _output):
 	dbn = DBN(
 		[64, 32, 2],
-		learn_rates = 0.2,
+		learn_rates = 0.3,
 		learn_rate_decays = 0.9,
-		epochs = 20,
+		epochs = 10,
 		verbose = 1)
 	dbn.fit(_input, _output)
-	save_object(dbn, "output/weights.pkl")
+	current_path = os.path.dirname(__file__)
+	weights_path = os.path.join(current_path, "weights.pkl")
+	save_object(dbn, weights_path)
 
 
 def save_object(obj, filename):

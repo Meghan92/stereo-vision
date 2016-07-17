@@ -3,6 +3,7 @@ import convolution.output as convolution
 
 
 def run():
-    detection.clean()
-    convolution.clean()
+	print "- Cleaning out the detection and convolution folders"
+	detection.clean()
+	convolution.clean()
 

@@ -4,7 +4,9 @@ import detection.count as count
 
 
 def run():
-    if count.faces() > 1:
-        return recognition
-    else:
-        return verification
+	if count.faces() > 1:
+		print "- Running recognition"
+		return recognition
+	else:
+		print "- Running verification"
+		return verification

@@ -1,7 +1,7 @@
 import os
 
 
-def run():
+def run(show_output=1):
 	path = os.path.dirname(os.path.realpath(__file__))
 	output_path = os.path.join(path, "output")
 	text_path = os.path.join(output_path, "bytes.txt")
@@ -18,10 +18,11 @@ def run():
 			filecombo = image_type + filecount
 			if filename_map.__len__() > 0 and filename_map.__contains__(filecombo):
 				index = filename_map.index(filecombo)
-				if "spoof" in filename:
-					array.append(-1)
-				else:
-					array.append(1)
+				if show_output > 0:
+					if "spoof" in filename:
+						array.append(-1)
+					else:
+						array.append(1)
 				value_map[index] += array					
 			else:
 				filename_map.append(filecombo)
@@ -34,4 +35,5 @@ def run():
 		text.write("\n")
 	text.close()
 	return value_map
+
 	

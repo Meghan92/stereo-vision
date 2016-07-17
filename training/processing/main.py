@@ -5,11 +5,12 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import fpb
 import output
 import format
+import constants
 
-line = "---------------------------------------------"
 
 #print(line + "\nrunning local binary pattern\n" + line)
 #lbp.run()
-print(line + "\nrunning face pattern byte\n" + line)
-fpb.run(16)
-format.run()
+def run(train=1):
+	print(constants.LINE + constants.color_codes.OKBLUE + "Running face pattern byte" + constants.color_codes.ENDC + constants.LINE)
+	fpb.run(constants.RESOLUTION)
+	return format.run(train)

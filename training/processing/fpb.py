@@ -1,14 +1,25 @@
 import preprocessing.convolution.output as output
 import numpy as np
+import os
+
+
+#variables
+current_path = os.path.join(os.path.dirname(__file__))
+output_path = os.path.join(current_path, "output")
+byte_path = os.path.join(output_path, "bytes.txt")
 
 
 def run(resolution=4):
 	print("- using resolution size of: " + str(resolution))
-	face_data = output.get(resolution)
-	print("- clearing bytes.txt")
-	text = open("output/bytes.txt", "w")
-	text.close()
 	print("- getting faces")
+	face_data = output.get(resolution)
+	length = face_data.__len__()
+	if length <= 0:
+		raise ReferenceError("Missing faces from convolution step. Unable to process. Please try again.")
+	print("- clearing bytes.txt")
+	text = open(byte_path, "w")
+	text.close()
+	
 	for data in face_data:
 		algorithm(data)
 
@@ -53,6 +64,6 @@ def normalise(x, min, max):
 	
 	
 def write(name, list):
-	text = open("output/bytes.txt", "a")
+	text = open(byte_path, "a")
 	text.write(name + ";" + str(list) + "\n")
 	text.close()

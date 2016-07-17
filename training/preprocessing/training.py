@@ -28,10 +28,11 @@ def run():
 			for folder_number in os.listdir(database_path):
 				folder_path = os.path.join(database_path, folder_number)
 				count += 1
-				for image in folder_path:
-					name = image.split(".jpg")[0]
-					print folder_path
-					environment_settings = detect_config.Ubuntu(os.path.join(folder_path, image),  prefix + name + "_" + str(count) + ".jpg")
+				for image in os.listdir(folder_path):
+					name = image.split(".")[0]
+					old_path = os.path.join(os.path.join("database", database), folder_number)
+					old_image = os.path.join(old_path, image)					
+					environment_settings = detect_config.Environment(detect_config.Ubuntu(old_image,  prefix + name + "_" + str(count) + ".jpg"))
 					detect.run(environment_settings)
 		print("- Cropping faces")
 		crop.run(constants.RESOLUTION)

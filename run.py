@@ -4,38 +4,62 @@ import cmd
 import training.constants as constants
 import training.preprocessing.training as preprocess_training
 import training.preprocessing.main as preprocess
+import training.processing.main as process
+import training.ann.predict as predict
+import training.ann.main as train
 
 
-print constants.LINE + "Capturing Face" + constants.LINE
-input = raw_input("Press any key when ready: ")
-#webcam.capture()
-print constants.LINE + "Saving capture" + constants.LINE
-input = raw_input("Would you like to save your images to the database for training? (y/n): ").lower()
-if input == "y":
-	train()
-else:
-	test()
-	
-	
-def test():
-	print constants.LINE + "Preprocessing" + constants.LINE
+def run():
+	try:
+		print constants.LINE + constants.color_codes.OKBLUE + "Capturing Face" + constants.color_codes.ENDC + constants.LINE
+		input = raw_input("Press any key when ready: ")
+		#webcam.capture()
+		print constants.LINE + constants.color_codes.OKBLUE + "Saving capture" + constants.color_codes.ENDC + constants.LINE
+		input = raw_input("Would you like to save your images to the database for training? (y/n): ").lower()
+		if input == "y":
+			save_capture()
+		ran_training = train_pre_processing()
+		if ran_training == "y":
+			process.run(1)
+			train.run()
+		else:
+			test_pre_processing()
+			byte_array = process.run(0)
+			print constants.LINE + constants.color_codes.OKBLUE + "Verifying" + constants.color_codes.ENDC + constants.LINE
+			verified = predict.run(byte_array)
+			if verified > 0:
+				print constants.color_codes.OKGREEN + "Your image has been verified. Running recognition." + constants.color_codes.ENDC
+			else:
+				print constants.color_codes.FAIL + "Face not verified, your image has been logged." + constants.color_codes.ENDC
+	except ReferenceError as refError:
+		print constants.color_codes.FAIL + "An error occurred: " + refError.message + constants.color_codes.ENDC
+
+
+def test_pre_processing():
+	print constants.LINE + constants.color_codes.OKBLUE + "Preprocessing" + constants.color_codes.ENDC + constants.LINE
 	preprocess.run()
 	
 	
-def train():
+def save_capture():
 	paths = capture_output.get_database_paths()
 	count = 0
 	print "The following databases are: "
 	for path in paths:
 		count += 1
 		print "[" + str(count) + "] " + path
-	input = raw_input("Which database number would you like to save to? (#): ")
+	input = raw_input("Which database number would you like to save to? (#): ").lower()
 	database_num = int(input) - 1
 	filename = paths[database_num]
 	input = raw_input("Your picture will be saved to the \"%s\" database. Are you sure? (y/n): " % (filename))
 	number = webcam.save_to_database(filename)
 	print "Your image has been saved to the \"%s\" database, which now has %s records" % (filename, number)
-	input = raw_input("Would you like to run the training network? (y/n): ")
+	
+	
+def train_pre_processing():
+	input = raw_input("Would you like to run the training network? (y/n): ").lower()
 	if input == "y":
-		print constants.LINE + "Preprocessing, please wait patiently..." + constants.LINE
+		print constants.LINE + constants.color_codes.OKBLUE + "Preprocessing, please wait patiently..." + constants.color_codes.ENDC + constants.LINE
 		preprocess_training.run()
+	return input
+	
+run()
