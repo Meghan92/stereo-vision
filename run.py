@@ -30,7 +30,7 @@ def run():
 			if verified > 0:
 				print constants.color_codes.OKGREEN + "Your image has been verified. Running recognition." + constants.color_codes.ENDC
 			else:
-				print constants.color_codes.FAIL + "Face not verified, your image has been logged." + constants.color_codes.ENDC
+				raise ReferenceError("Face not verified, your image has been logged.")
 	except ReferenceError as refError:
 		print constants.color_codes.FAIL + "An error occurred: " + refError.message + constants.color_codes.ENDC
 
