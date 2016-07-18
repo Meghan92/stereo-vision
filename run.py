@@ -13,7 +13,7 @@ def run():
 	try:
 		print constants.LINE + constants.color_codes.OKBLUE + "Capturing Face" + constants.color_codes.ENDC + constants.LINE
 		input = raw_input("Press any key when ready: ")
-		#webcam.capture()
+		webcam.capture()
 		print constants.LINE + constants.color_codes.OKBLUE + "Saving capture" + constants.color_codes.ENDC + constants.LINE
 		input = raw_input("Would you like to save your images to the database for training? (y/n): ").lower()
 		if input == "y":

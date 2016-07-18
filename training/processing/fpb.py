@@ -52,8 +52,7 @@ def loop(increment, length, breadth, image):
 		for x in range(start_val, start_val + increment):
 			for y in range(0, breadth):
 				item = image[x][y][0]
-				if item > 0:
-					count += 1
+				count += item
 		start_val += increment
 		count_list.append(count)
 	return count_list
