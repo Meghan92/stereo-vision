@@ -5,7 +5,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import fpb
 import output
 import format
-import constants
+import common.constants as constants
 
 
 #print(line + "\nrunning local binary pattern\n" + line)

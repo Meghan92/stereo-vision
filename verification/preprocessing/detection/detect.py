@@ -13,5 +13,7 @@ def run(environment):
 	print "\t- %s" % (faces)
 	for (x, y, w, h) in faces:
 		i += 1
+		output_length = environment.output.__len__()
+		output_name = environment.output[0:output_length-4] + "_" + str(i) + ".jpg"
 		crop_img = img[y:y+h, x:x+w]
-		cv2.imwrite(environment.output, crop_img)
+		cv2.imwrite(output_name, crop_img)

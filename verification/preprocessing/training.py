@@ -6,7 +6,7 @@ import preprocessing.detection.detect as detect
 import preprocessing.convolution.verification as verify
 import preprocessing.detection.config as detect_config
 import capture.output as capture_output
-import constants
+import common.constants
 import clean
 
 

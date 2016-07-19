@@ -2,7 +2,7 @@ import os
 import cv2
 import sys
 sys.path.append(os.path.join(os.path.join(os.path.dirname(__file__), '..'), '..'))
-import constants
+import common.constants as constants
 
 
 # returns an array of images in the output folder with a specified fpb resolution
