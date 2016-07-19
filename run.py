@@ -1,12 +1,12 @@
-import training.capture.webcam as webcam
-import training.capture.output as capture_output
+import verification.capture.webcam as webcam
+import verification.capture.output as capture_output
 import cmd
-import training.constants as constants
-import training.preprocessing.training as preprocess_training
-import training.preprocessing.main as preprocess
-import training.processing.main as process
-import training.ann.predict as predict
-import training.ann.main as train
+import verification.constants as constants
+import verification.preprocessing.training as preprocess_training
+import verification.preprocessing.main as preprocess
+import verification.processing.main as process
+import verification.ann.predict as predict
+import verification.ann.main as train
 
 
 def run():
