@@ -9,6 +9,8 @@ import processing.main as process
 import ann.predict as predict
 import ann.main as train
 import common.exception as customException
+sys.path.append(os.path.join(os.path.dirname(__file__), 'recognition'))
+import preprocess as recognition_preprocess
 
 
 try:
@@ -52,7 +54,8 @@ try:
 except customException.VerificationFailure as error:
 	print constants.color_codes.FAIL + "An error occurred: " + error.message + constants.color_codes.ENDC
 except customException.MultiFaceException as error:
-	print constants.color_codes.WARNING + error.message + "\nRecognition will run first." + constants.color_codes.ENDC
-	
+	print constants.color_codes.WARNING + error.message + "\nRecognition will run." + constants.color_codes.ENDC
+	print constants.LINE + constants.color_codes.OKBLUE + "Splitting Image Colours" + constants.color_codes.ENDC + constants.LINE
+	recognition_preprocess.run()
 
 	
