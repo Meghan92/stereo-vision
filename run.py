@@ -1,5 +1,6 @@
 import cmd, sys, os, ui
 from shutil import copyfile
+from shutil import rmtree
 sys.path.append(os.path.join(os.path.dirname(__file__), 'verification'))
 import capture.webcam as webcam
 import capture.output as capture_output
@@ -23,8 +24,9 @@ while (system != 4):
 		else:
 			ui.header("Capturing Face")
 			input = raw_input("Press any key when ready: ")
-			#webcam.capture()
+			webcam.capture()
 			ui.header("Saving capture")
+			
 		if system == 1:	
 			input = raw_input("Please enter your student number (e.g. u11019532): ")
 			ui.header("Preprocessing")
@@ -57,10 +59,10 @@ while (system != 4):
 				if verified > 0:
 					ui.success("You have been registered.")
 				else:
-					ui.error("Your image was not verified by the system.")
-			except customException.DetectionFailure as error:
+					raise customException.VerificationFailure("Your image was not verified by the system.")
+			except (customException.DetectionFailure, customException.VerificationFailure) as error:
 				ui.warning(error.message + "\nRemoving folder '%s'" % (input))	
-				
+				rmtree(new_path)
 			
 		elif system == 3:
 			input = raw_input("Would you like to save your images to the database for training? (y/n): ").lower()	
@@ -92,8 +94,8 @@ while (system != 4):
 		ui.warning(error.message + "\nRecognition will run.")
 		ui.header("Splitting Image Colours")
 		recognition_preprocess.run()
-	except OSError as error:
-		ui.fail("A file system error occurred.\nIf you are registering, your file might already exist on the system.")
+	#except OSError as error:
+		#ui.fail("A file system error occurred.\nIf you are registering, your file might already exist on the system.")
 
 
 	
