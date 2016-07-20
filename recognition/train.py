@@ -10,5 +10,7 @@ def run():
 	print "- Running face recognizer"
 	recognizer.train(images, np.array(labels))
 	print "- Saving output"
-	recognizer.save("recognizer.xml")
+	current_path = os.path.dirname(__file__)
+	file_name = os.path.join(current_path, "recognizer.xml")
+	recognizer.save(file_name)
 	
