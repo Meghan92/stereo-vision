@@ -1,6 +1,9 @@
+import colour
+
+
 def success():
-	print "Image Captured Successfully"
+	print colour.GREEN + "Image Captured Successfully" + colour.ENDC
 	
 	
 def fail():
-	print "Your image was not captured, please try again?"
+	print colour.RED + "Your image was not captured, please try again?" + colour.ENDC
