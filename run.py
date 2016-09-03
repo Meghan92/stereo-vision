@@ -1,4 +1,7 @@
 import scripts.capture as capture
+import scripts.viewport as viewport
 
 
-capture.run()
+print "Hit any key when ready to capture"
+viewport.show()
+capture.frontal()
