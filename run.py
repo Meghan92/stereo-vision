@@ -1,7 +1,10 @@
 import scripts.capture as capture
 import scripts.viewport as viewport
+import scripts.menu as menu
+import scripts.common.enum as enums
 
 
-print "Hit any key when ready to capture"
-viewport.show()
-capture.frontal()
+option = menu.start()
+if option == enums.menu.LOGIN:
+	viewport.show()
+	capture.frontal()

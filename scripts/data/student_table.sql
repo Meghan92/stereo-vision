@@ -1,0 +1,7 @@
+USE STEREOVISION;
+CREATE TABLE STUDENT(
+	student_id INT NOT NULL,
+	first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(50) NOT NULL,
+	PRIMARY KEY (student_id)
+);
