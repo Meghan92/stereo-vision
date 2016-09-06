@@ -1,5 +1,5 @@
-USE STEREOVISION;
-CREATE TABLE STUDENT(
+USE StereoVision;
+CREATE TABLE Student(
 	student_id INT NOT NULL,
 	first_name VARCHAR(50) NOT NULL,
 	last_name VARCHAR(50) NOT NULL,
