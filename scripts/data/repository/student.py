@@ -11,3 +11,14 @@ def insert(student):
 	cursor.execute(query)
 	db.commit()
 	db.close()
+	
+	
+def get(student_id):
+	connection = config.ConnectionString()
+	db = connection.database;
+	cursor = db.cursor()
+	query = """SELECT * FROM Student WHERE student_id = {}""".format(student_id)
+	cursor.execute(query)
+	db.commit()
+	db.close()
+	return cursor.fetchone()
