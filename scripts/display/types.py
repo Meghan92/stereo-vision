@@ -1,4 +1,5 @@
 import constants
+import os
 
 
 def header(message):
@@ -10,11 +11,15 @@ def success(message):
 	
 	
 def fail(message):
-	print constants.colour.FAIL + constants.text.LINE + message + constants.text.LINE +  constants.colour.ENDC
+	print constants.colour.RED + constants.text.LINE + message + constants.text.LINE +  constants.colour.ENDC
 	
 	
 def warning(message):
 	print constants.colour.WARNING + constants.text.LINE + message + constants.text.LINE + constants.colour.ENDC
+	
+	
+def clear():
+	os.system('clear')
 
 
 def number_list(message_array):
