@@ -17,11 +17,8 @@ while option != enums.menu.QUIT:
 			if exists:
 				viewport.show()
 				capture.frontal()
-				if algorithm.verify_capture():
-					if algorithm.verify_student():
-						complete.success()
-					else:
-						complete.fail()
+				if algorithm.verify_capture() and algorithm.verify_student():
+					complete.success()
 				else:
 					complete.fail()
 				option = enums.menu.QUIT
