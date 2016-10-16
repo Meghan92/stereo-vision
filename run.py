@@ -37,6 +37,6 @@ while option != enums.menu.QUIT:
 				print "Call training algorithm"
 			if training_type == enums.train.RECOGNITION:
 				print "Call training algorithm"
-		if option != enums.menu.QUIT
+		if option != enums.menu.QUIT:
 			option = enums.menu.RETURN
 		
