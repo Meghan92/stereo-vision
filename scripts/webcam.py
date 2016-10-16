@@ -41,17 +41,13 @@ def count():
 	return counter
 
 
-def save_to_database(location):
-	databases_location = os.path.join(file_path, "database")
-	database_location = os.path.join(databases_location, location)
-	data_num = 1
-	for images in os.listdir(database_location):
-		if data_num < int(images):
-			data_num = int(images)
-	data_num += 1
-	new_path = os.path.join(database_location, str(data_num))
-	os.makedirs(new_path)
-	for images in os.listdir(output_path):
-		copyfile(os.path.join(output_path, images), os.path.join(new_path, images))
-	return data_num
+def get_blobs():
+	#return blobs in an array
+	blob_array = []
+	path = os.path.dirname(os.path.realpath(__file__))
+    output_path = os.path.join(path, "output")
+    for files in os.listdir(output_path):
+    	file_name = os.path.join(output_path, files)
+		blob_array.append(open(file_name, 'rb').read())
+	return blob_array
 	

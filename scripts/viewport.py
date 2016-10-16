@@ -6,12 +6,16 @@ def show():
 	viewport.start()
 	cam = cv2.VideoCapture(0)
 	show = 1
+	window_name = 'Image Viewport'
 	while show == 1:
-		viewport.loaded()
 		ret_val, img = cam.read()
-		window_name = 'Image Viewport'
 		cv2.imshow(window_name, img)
 		cv2.moveWindow(window_name, 100, 0)
-		if cv2.waitKey(1) > -1: 
+		viewport.loaded()
+		if cv2.waitKey(1) > 0: 
 			show = 0
-			cv2.destroyAllWindows()
+			cv2.destroyWindow(window_name)
+			cv2.waitKey(1)
+			cv2.waitKey(1)
+			cv2.waitKey(1)
+			cv2.waitKey(1)

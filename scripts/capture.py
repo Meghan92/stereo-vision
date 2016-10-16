@@ -1,6 +1,5 @@
 import webcam
 import display
-import display.webcam
 import common.exceptions
 
 #capture.py is used for recording images
@@ -14,10 +13,10 @@ def frontal():
 		is_captured = webcam.capture()
 
 		if is_captured:
-			display.webcam.success()
+			display.types.success("Image Captured Successfully")
 		else:
 			is_captured = 0
-			display.webcam.fail()
+			display.types.fail("Your image was not captured correctly")
 			#read in if user would like to try again
 			valid_input = 0
 			while valid_input == 0:
@@ -29,6 +28,8 @@ def frontal():
 					valid_input = 1
 					raise common.exceptions.CaptureError()
 				print("\nInvalid input (" + try_again + ") Please either specify \"y\" or \"n\"")
-			
-			
+				
+
+def save(image_type):
+	blob_array = webcam.get_blobs()	
 			
