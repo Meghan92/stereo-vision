@@ -13,8 +13,8 @@ while option != enums.menu.QUIT:
 	option = menu.start()
 	while option != enums.menu.RETURN and option != enums.menu.QUIT:
 		if option == enums.menu.LOGIN:
-			exists = login.start()
-			if exists:
+			try:
+				student_number = login.start()
 				viewport.show()
 				capture.frontal()
 				if algorithm.verify_capture() and algorithm.verify_student():
@@ -22,8 +22,8 @@ while option != enums.menu.QUIT:
 				else:
 					complete.fail()
 				option = enums.menu.QUIT
-			else:
-				option = menu.login_invalid()
+			except ValueError as error:
+				option = menu.login_invalid(error.message)
 		if option == enums.menu.REGISTER:
 			registered = register.start()
 			if registered:
@@ -37,6 +37,6 @@ while option != enums.menu.QUIT:
 				print "Call training algorithm"
 			if training_type == enums.train.RECOGNITION:
 				print "Call training algorithm"
-		if option != enums.menu.QUIT:
+		if option != enums.menu.QUIT and option != enums.menu.LOGIN:
 			option = enums.menu.RETURN
 		

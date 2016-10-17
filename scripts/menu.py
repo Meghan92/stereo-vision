@@ -29,8 +29,8 @@ def register_fail():
 		return enum.menu.RETURN
 		
 
-def login_invalid():
-	display.fail("Your details do not exist in the system")
+def login_invalid(message):
+	display.fail(message)
 	print "What would you like to do?\n\n"
 	display.number_list(["Retry","Register","Return to Menu"])
 	response = raw_input("\nEnter a number (e.g. 1): ")
