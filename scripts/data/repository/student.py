@@ -8,8 +8,9 @@ def insert(student):
 	db = connection.database;
 	cursor = db.cursor()    
 	now = time.strftime('%Y-%m-%d %H:%M:%S')
-	query = """INSERT INTO Student VALUES ({sid}, '{fn}', '{ln}', '{cdt}', '{udt}')""".\
-		format(sid=student.student_id, fn=student.first_name, ln=student.last_name,cdt=now,udt='NULL')
+	query = """INSERT INTO Student (student_id, first_name, last_name, create_date)"""\
+			"""VALUES ({sid}, '{fn}', '{ln}', '{cdt}')""".\
+		format(sid=student.student_id, fn=student.first_name, ln=student.last_name,cdt=now)
 	cursor.execute(query)
 	db.commit()
 	db.close()
