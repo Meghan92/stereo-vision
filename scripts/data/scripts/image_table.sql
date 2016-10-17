@@ -26,3 +26,7 @@ ALTER TABLE Image
 ADD create_date datetime;
 ALTER TABLE Image
 ADD update_date datetime;
+ALTER TABLE Image
+MODIFY left_image LONGBLOB NOT NULL;
+ALTER TABLE Image
+MODIFY right_image LONGBLOB NOT NULL;
