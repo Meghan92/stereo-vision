@@ -29,8 +29,11 @@ while option != enums.menu.QUIT:
 		elif option == enums.menu.REGISTER:
 			registered = register.start(student_number)
 			if registered:
+				viewport.show()
 				capture.frontal()
 				register.compare()
+				option = enums.menu.QUIT
+				complete.success()
 			else:
 				option = menu.register_fail()
 		elif option == enums.menu.SETTINGS:
