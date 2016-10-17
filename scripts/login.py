@@ -1,5 +1,6 @@
 import display.types as display
 import business.student
+import common.exceptions as errors
 
 
 def start():
@@ -9,5 +10,5 @@ def start():
 	if student is not None:
 		return student_number
 	else:
-		raise ValueError("Student number {} does not exist in database.".format(student_number))
+		raise errors.InvalidLogin("Student number {} does not exist in database.".format(student_number), student_number)
 	
