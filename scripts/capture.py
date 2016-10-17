@@ -33,7 +33,7 @@ def frontal():
 
 def save(student_id, image_type_id):
 	blob_array = webcam.get_blobs()
-	array_length = blob_array.__length__()
+	array_length = len(blob_array)
 	if array_length == 2:
 		images.create(student_id, image_type_id, blob_array)
 	else:

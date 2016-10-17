@@ -18,7 +18,7 @@ while option != enums.menu.QUIT:
 			try:
 				student_number = login.start()
 				viewport.show()
-				capture.frontal()
+				capture.frontal() 
 				if algorithm.verify_capture() and algorithm.verify_student():
 					complete.success()
 				else:
@@ -27,10 +27,11 @@ while option != enums.menu.QUIT:
 			except errors.InvalidLogin as error:
 				option, student_number = menu.login_invalid(error.message, error.student_number)
 		elif option == enums.menu.REGISTER:
-			registered = register.start(student_number)
+			registered, student_number = register.start(student_number)
 			if registered:
 				viewport.show()
 				capture.frontal()
+				capture.save(student_number, enums.capture.FRONTAL)
 				register.compare()
 				option = enums.menu.QUIT
 				complete.success()

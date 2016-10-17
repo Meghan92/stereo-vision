@@ -1,5 +1,5 @@
 import subprocess
-import os
+import os, base64
 from shutil import copyfile
 
 
@@ -48,6 +48,6 @@ def get_blobs():
 	output_path = os.path.join(path, "output")
 	for files in os.listdir(output_path):
 		file_name = os.path.join(output_path, files)
-		blob_array.append(open(file_name, 'rb').read())
+		blob_array.append(base64.b64encode(open(file_name, 'rb').read()))
 	return blob_array
 	
