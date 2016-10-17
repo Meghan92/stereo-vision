@@ -7,7 +7,7 @@ CREATE TABLE Student(
 );
 
 ALTER TABLE Student
-ADD create_date date;
+ADD create_date datetime;
 
 ALTER TABLE Student
-ADD update_date date;
+ADD update_date datetime;

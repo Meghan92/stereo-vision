@@ -18,11 +18,11 @@ CREATE TABLE Image(
 INSERT INTO ImageType(image_type) values('Frontal');
 
 ALTER TABLE ImageType
-ADD create_date date;
+ADD create_date datetime;
 ALTER TABLE ImageType
-ADD update_date date;
+ADD update_date datetime;
 
 ALTER TABLE Image
-ADD create_date date;
+ADD create_date datetime;
 ALTER TABLE Image
-ADD update_date date;
+ADD update_date datetime;
