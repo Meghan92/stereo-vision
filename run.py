@@ -6,9 +6,11 @@ import scripts.register as register
 import scripts.login as login
 import scripts.algorithm as algorithm
 import scripts.complete as complete
+import scripts.common.exceptions as errors
 
 
 option = None
+student_number = None
 while option != enums.menu.QUIT:
 	option = menu.start()
 	while option != enums.menu.RETURN and option != enums.menu.QUIT:
@@ -22,21 +24,21 @@ while option != enums.menu.QUIT:
 				else:
 					complete.fail()
 				option = enums.menu.QUIT
-			except ValueError as error:
-				option = menu.login_invalid(error.message)
-		if option == enums.menu.REGISTER:
-			registered = register.start()
+			except errors.InvalidLogin as error:
+				option, student_number = menu.login_invalid(error.message, error.student_number)
+		elif option == enums.menu.REGISTER:
+			registered = register.start(student_number)
 			if registered:
 				capture.frontal()
 				register.compare()
 			else:
 				option = menu.register_fail()
-		if option == enums.menu.SETTINGS:
+		elif option == enums.menu.SETTINGS:
 			training_type = menu.training()
 			if training_type == enums.train.VERIFICATION:
 				print "Call training algorithm"
 			if training_type == enums.train.RECOGNITION:
 				print "Call training algorithm"
-		if option != enums.menu.QUIT and option != enums.menu.LOGIN:
+		else:
 			option = enums.menu.RETURN
 		
