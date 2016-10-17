@@ -3,9 +3,13 @@ import business.student
 import data.model
 
 
-def start():
+def start(student_number):
 	display.header("Registration")
-	student_id = raw_input("Please enter your student number (e.g. 123456789): ")
+	if student_number is None:
+		student_id = raw_input("Please enter your student number (e.g. 123456789): ")
+	else:
+		student_id = student_number
+		display.success("Student number: {}".format(student_id))
 	first_name = raw_input("Please enter your first name: ")
 	last_name = raw_input("Please enter your last name: ")
 	response = business.student.create(student_id, first_name, last_name)

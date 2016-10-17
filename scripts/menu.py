@@ -29,17 +29,17 @@ def register_fail():
 		return enum.menu.RETURN
 		
 
-def login_invalid(message):
+def login_invalid(message, student_number):
 	display.fail(message)
 	print "What would you like to do?\n\n"
 	display.number_list(["Retry","Register","Return to Menu"])
 	response = raw_input("\nEnter a number (e.g. 1): ")
 	if response == "1":
-		return enum.menu.LOGIN
+		return enum.menu.LOGIN, student_number
 	if response == "2":
-		return enum.menu.REGISTER
+		return enum.menu.REGISTER, student_number
 	if response == "3":
-		return enum.menu.RETURN
+		return enum.menu.RETURN, student_number
 		
 def verify_option(OPTION):
 	if not OPTION.isdigit() or OPTION == enum.menu.INVALID:
