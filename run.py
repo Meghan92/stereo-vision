@@ -7,6 +7,7 @@ import scripts.login as login
 import scripts.algorithm as algorithm
 import scripts.complete as complete
 import scripts.common.exceptions as errors
+import scripts.verification as verification
 
 
 option = None
@@ -40,9 +41,11 @@ while option != enums.menu.QUIT:
 		elif option == enums.menu.SETTINGS:
 			training_type = menu.training()
 			if training_type == enums.train.VERIFICATION:
+				verification.train()
+			elif training_type == enums.train.RECOGNITION:
 				print "Call training algorithm"
-			if training_type == enums.train.RECOGNITION:
-				print "Call training algorithm"
+			else:
+				option = enums.menu.RETURN
 		else:
 			option = enums.menu.RETURN
 		

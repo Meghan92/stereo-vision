@@ -8,6 +8,7 @@ class menu:
 class train:
 	VERIFICATION = "0"
 	RECOGNITION = "1"
+	CANCEL = "2"
 	
 class capture:
 	FRONTAL = "1"

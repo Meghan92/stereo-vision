@@ -51,3 +51,20 @@ def get_blobs():
 		blob_array.append(base64.b64encode(open(file_name, 'rb').read()))
 	return blob_array
 	
+
+def save_to_database(location):
+	file_path = os.path.dirname(os.path.realpath(__file__))
+	output_path = os.path.join(file_path, "output")
+	databases_location = os.path.join(file_path, "database")
+	database_location = os.path.join(databases_location, location)
+	data_num = 1
+	for images in os.listdir(database_location):
+		if data_num < int(images):
+			data_num = int(images)
+	data_num += 1
+	new_path = os.path.join(database_location, str(data_num))
+	os.makedirs(new_path)
+	for images in os.listdir(output_path):
+		copyfile(os.path.join(output_path, images), os.path.join(new_path, images))
+	return data_num
+	

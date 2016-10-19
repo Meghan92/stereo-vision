@@ -47,3 +47,18 @@ def verify_option(OPTION):
 	else:
 		return OPTION
 	
+		
+def training():
+	display.header("Training")
+	print "Which algorithm would you like to use?\n\n"
+	display.number_list(["Verification","Recognition","Cancel"])
+	response = raw_input("\nEnter a number (e.g. 1): ")
+	if response == "1":
+		return enum.train.VERIFICATION
+	elif response == "2":
+		return enum.train.RECOGNITION
+	elif response == "3":
+		return enum.train.CANCEL
+	
+	
+	
