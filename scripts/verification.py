@@ -2,6 +2,7 @@ import services.verification.preprocessing.training as preprocess
 import services.verification.processing.main as process
 import services.verification.ann.main as neural_network
 import services.verification.capture.output as output
+import services.verification.ann.predict as predict
 import display.types as ui
 import viewport
 import capture
@@ -34,6 +35,13 @@ def train():
 		process.run(1)
 		ui.header("Training")
 		neural_network.run()
-
-
-
+		
+		
+def run():
+	input = raw_input("Please enter your student number (e.g. 11019532): ")
+	ui.header("Preprocessing")
+	preprocess.run()
+	byte_array = process.run(0)
+	ui.header("Verifying")
+	verified = predict.run(byte_array)		
+	return verified
