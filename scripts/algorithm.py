@@ -1,10 +1,20 @@
-import verification
-import recognition
+import verification as verify
+import recognition as recog
 
-def verify_capture():
-	#call verification
-	return True
+
+class verification():
+
+	def train():
+		verify.train()
 	
-def verify_student():
-	#run recognition on profile
-	return True
+	def run():
+		verify.run()
+
+
+class recognition():
+
+	def train():
+		recog.train()
+
+	def run(username):
+		recog.run(username)
