@@ -3,18 +3,17 @@ import recognition as recog
 
 
 class verification():
-
-	def train():
-		verify.train()
+	def train(self, resolution):
+		verify.train(resolution)
 	
-	def run():
-		verify.run()
+	def run(self, resolution):
+		verify.run(resolution)
 
 
 class recognition():
 
-	def train():
+	def train(self):
 		recog.train()
 
-	def run(username):
+	def run(self, username):
 		recog.run(username)

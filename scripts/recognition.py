@@ -4,7 +4,6 @@ import services.recognition.predict as predict
 
 
 def run(username):
-	ui.success("Your image has been verified.")
 	ui.header("Running Recognition")
 	preprocess.run()
 	recognized = predict.run(username)

@@ -1,6 +1,4 @@
 import cv2, sys, os
-sys.path.append(os.path.join(os.path.join(os.path.dirname(__file__), '..'), '..'))
-import common.exception as customException
 
 
 def run(environment):
@@ -11,7 +9,7 @@ def run(environment):
 	i = 0
 	length = faces.__len__()
 	if length <= 0:
-		raise customException.DetectionFailure("A face could not be detected. Please try again")
+		raise ValueError("A face could not be detected. Please try again")
 	print "\t- %s" % (faces)
 	for (x, y, w, h) in faces:
 		i += 1

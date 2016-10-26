@@ -6,12 +6,11 @@ import preprocessing.detection.detect as detect
 import preprocessing.convolution.verification as verify
 import preprocessing.detection.config as detect_config
 import capture.output as capture_output
-import common.constants as constants
 import clean
 import detection.checker as checker
 
 
-def run():
+def run(resolution):
 	try:	
 		parent_folder = os.path.join(os.path.dirname(__file__), '..')
 		capture_folder = os.path.join(parent_folder, "capture")
@@ -37,7 +36,7 @@ def run():
 					detect.run(environment_settings)
 		checker.clean_duplicates()
 		print("- Cropping faces")
-		crop.run(constants.RESOLUTION)
+		crop.run(resolution)
 		print("- Convolving")
 		verify.run()
 	except ReferenceError as refError:

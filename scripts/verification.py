@@ -1,4 +1,5 @@
-import services.verification.preprocessing.training as preprocess
+import services.verification.preprocessing.training as preprocess_training
+import services.verification.preprocessing.test as preprocess_test
 import services.verification.processing.main as process
 import services.verification.ann.main as neural_network
 import services.verification.capture.output as output
@@ -9,7 +10,7 @@ import capture
 import webcam
 
 
-def train():
+def train(resolution):
 	ui.header("Verification Training")
 	input = raw_input("Would you like capture an image for training? (y/n): ").lower()	
 	if input == "y":
@@ -31,17 +32,20 @@ def train():
 	input = raw_input("Would you like to run the training network for the verification database? (y/n): ").lower()
 	if input == "y":
 		ui.header("Preprocessing, please wait patiently...")
-		preprocess.run()
-		process.run(1)
+		preprocess_training.run()
+		process.run(resolution, 1)
 		ui.header("Training")
 		neural_network.run()
 		
-		
-def run():
-	input = raw_input("Please enter your student number (e.g. 11019532): ")
+	
+def run(resolution):
 	ui.header("Preprocessing")
-	preprocess.run()
-	byte_array = process.run(0)
+	preprocess_test.run(resolution)
+	byte_array = process.run(resolution, 0)
 	ui.header("Verifying")
-	verified = predict.run(byte_array)		
+	verified = predict.run(byte_array)	
+	if verified == 1:
+		ui.success("Your image has been verified")
+	else:
+		ui.fail("Your image was not verified")
 	return verified

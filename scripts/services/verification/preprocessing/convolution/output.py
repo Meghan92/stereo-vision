@@ -1,12 +1,9 @@
 import os
 import cv2
 import sys
-sys.path.append(os.path.join(os.path.join(os.path.dirname(__file__), '..'), '..'))
-import common.constants as constants
 
 
-# returns an array of images in the output folder with a specified fpb resolution
-def get(resolution=constants.RESOLUTION):
+def get(resolution):
     path = os.path.dirname(os.path.realpath(__file__))
     output_path = os.path.join(path, "output")
     images = []

@@ -7,10 +7,13 @@ import scripts.login as login
 import scripts.algorithm as algorithm
 import scripts.complete as complete
 import scripts.common.exceptions as errors
+import scripts.common.constants as constants
 
 
 option = None
 student_number = None
+verification = algorithm.verification()
+recognition = algorithm.recognition()
 while option != enums.menu.QUIT:
 	option = menu.start()
 	while option != enums.menu.RETURN and option != enums.menu.QUIT:
@@ -19,8 +22,8 @@ while option != enums.menu.QUIT:
 				student_number = login.start()
 				viewport.show()
 				capture.frontal() 
-				verified = algorithm.verification.run()
-				recognized = algorithm.recognition.run()
+				verified = verification.run(constants.RESOLUTION)
+				recognized = recognition.run(student_number)
 				if verified and recognized:
 					complete.success(student_number)
 				else:
@@ -42,9 +45,9 @@ while option != enums.menu.QUIT:
 		elif option == enums.menu.SETTINGS:
 			training_type = menu.training()
 			if training_type == enums.train.VERIFICATION:
-				algorithm.verification.train()
+				verification.train(constants.RESOLUTION)
 			elif training_type == enums.train.RECOGNITION:
-				algorithm.recognition.train()
+				recognition.train()
 			else:
 				option = enums.menu.RETURN
 		else:
