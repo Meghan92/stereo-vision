@@ -39,13 +39,17 @@ def train(resolution):
 		
 	
 def run(resolution):
-	ui.header("Preprocessing")
-	preprocess_test.run(resolution)
-	byte_array = process.run(resolution, 0)
-	ui.header("Verifying")
-	verified = predict.run(byte_array)	
-	if verified == 1:
-		ui.success("Your image has been verified")
-	else:
-		ui.fail("Your image was not verified")
-	return verified
+	try:
+		ui.header("Preprocessing")
+		preprocess_test.run(resolution)
+		byte_array = process.run(resolution, 0)
+		ui.header("Verifying")
+		verified = predict.run(byte_array) > 0	
+		if verified:
+			ui.success("Your image has been verified")
+		else:
+			ui.fail("Your image was not verified")
+		return verified
+	except ValueError as error:
+		ui.fail(error)
+		return False

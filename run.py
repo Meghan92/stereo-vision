@@ -12,6 +12,8 @@ import scripts.common.constants as constants
 
 option = None
 student_number = None
+recognized = False
+verified = False
 verification = algorithm.verification()
 recognition = algorithm.recognition()
 while option != enums.menu.QUIT:
@@ -23,10 +25,11 @@ while option != enums.menu.QUIT:
 				viewport.show()
 				capture.frontal() 
 				verified = verification.run(constants.RESOLUTION)
-				recognized = recognition.run(student_number)
-				if verified and recognized:
-					complete.success(student_number)
-				else:
+				if verified:
+					recognized = recognition.run(student_number)
+					if recognized:
+						complete.success(student_number)
+				if not verified or not recognized:
 					complete.fail(student_number)
 				option = enums.menu.QUIT
 			except errors.InvalidLogin as error:

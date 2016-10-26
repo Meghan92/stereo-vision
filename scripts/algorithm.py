@@ -7,7 +7,7 @@ class verification():
 		verify.train(resolution)
 	
 	def run(self, resolution):
-		verify.run(resolution)
+		return verify.run(resolution)
 
 
 class recognition():
@@ -16,4 +16,4 @@ class recognition():
 		recog.train()
 
 	def run(self, username):
-		recog.run(username)
+		return recog.run(username)

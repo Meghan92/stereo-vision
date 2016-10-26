@@ -13,7 +13,4 @@ def run(student):
 	image = cv2.imread(image_location, 0)
 	nbr_predicted, conf = recognizer.predict(image)
 	nbr_actual = int(student)
-	if nbr_actual == nbr_predicted:
-		return 1
-	else:
-		return 0
+	return nbr_actual == nbr_predicted

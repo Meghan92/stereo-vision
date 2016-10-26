@@ -6,5 +6,5 @@ import services.recognition.predict as predict
 def run(username):
 	ui.header("Running Recognition")
 	preprocess.run()
-	recognized = predict.run(username)
-	return recognized == 1
+	return predict.run(username)
+	
