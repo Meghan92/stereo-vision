@@ -3,7 +3,7 @@ import common.enum as enum
 
 
 def start():
-	#display.clear()
+	display.clear()
 	display.header("Welcome to the Stereo Vision Verification System")
 	print "What would you like to do?\n\n"
 	display.number_list(["Login", "Register", "Settings", "Quit"])

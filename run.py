@@ -14,6 +14,7 @@ option = None
 student_number = None
 recognized = False
 verified = False
+registered = False
 verification = algorithm.verification()
 recognition = algorithm.recognition()
 while option != enums.menu.QUIT:
@@ -29,22 +30,27 @@ while option != enums.menu.QUIT:
 					recognized = recognition.run(student_number)
 					if recognized:
 						complete.success(student_number)
-				if not verified or not recognized:
+				if not (verified and recognized):
 					complete.fail(student_number)
 				option = enums.menu.QUIT
 			except errors.InvalidLogin as error:
 				option, student_number = menu.login_invalid(error.message, error.student_number)
 		elif option == enums.menu.REGISTER:
-			registered, student_number = register.start(student_number)
-			if registered:
+			try:
+				studentModel = register.start(student_number)
 				viewport.show()
 				capture.frontal()
-				capture.save(student_number, enums.capture.FRONTAL)
-				register.compare()
-				option = enums.menu.QUIT
-				complete.success(student_number)
-			else:
-				option = menu.register_fail()
+				verified = verification.run(constants.RESOLUTION)
+				if verified:
+					registered = register.create(studentModel)
+					if registered:
+						capture.save(studentModel.student_id, enums.capture.FRONTAL)			
+						option = enums.menu.QUIT
+						complete.success(studentModel.student_id)
+				if not (verified and registered):
+					option = menu.register_fail()
+			except ValueError as error:
+				raw_input("Hit enter to continue")	
 		elif option == enums.menu.SETTINGS:
 			training_type = menu.training()
 			if training_type == enums.train.VERIFICATION:
