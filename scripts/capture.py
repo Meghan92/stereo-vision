@@ -3,6 +3,7 @@ import display
 import common.exceptions
 import business.image as images
 import services.verification.capture.output as output
+import shutil, os
 
 #capture.py is used for recording images
 #if an image has not been captured,
@@ -55,7 +56,7 @@ def training():
 	input = raw_input("\nEnter a number (e.g. 1): ").lower()
 	database_num = int(input) - 1
 	filename = paths[database_num]
-	display.types.warning("Your picture will be saved to the \"{}\" database".format(filename))
+	display.types.warning("Your pictures will be saved to the \"{}\" database".format(filename))
 	input = raw_input("Are you sure? (y/n): ").lower()
 	if input == "y":
 		return filename
@@ -65,6 +66,27 @@ def training():
 		
 def training_save(filename):
 	display.types.header("Saving Face")
+	file_path = os.path.dirname(os.path.realpath(__file__))
+	source_path = os.path.join(file_path, "output")
+	services_path = os.path.join(file_path, "services")
+	verification_path = os.path.join(services_path, "verification")
+	capture_path = os.path.join(verification_path, "capture")
+	database_path = os.path.join(capture_path, "database")
+	chosen_path = os.path.join(database_path, filename)
+	directories = os.listdir(chosen_path)
+	index_path = str(max([int(numbers) for numbers in directories]) + 1)
+	destination_path = os.path.join(chosen_path, index_path)
+	os.makedirs(destination_path)
+	for images in os.listdir(source_path):
+		simage_path = os.path.join(source_path, images)
+		shutil.move(simage_path, destination_path)
+	input = raw_input("Image Saved. There are {} image(s) in database. Continue? (y/n): ".format(index_path)).lower()
+	if input == "y":
+		return True
+	else:
+		return False
+	
+	
 	
 	
 		

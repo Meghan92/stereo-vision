@@ -63,14 +63,14 @@ while option != enums.menu.QUIT:
 					option = enums.menu.RETURN
 			elif settings_type == enums.settings.CAPTURE:
 				capturing = True
-				while capturing:
-					filename = capture.training()
-					if filename is not None:
+				filename = capture.training()
+				if filename is not None:
+					while capturing:
 						viewport.show()
 						capture.frontal()
-					else:
-						option = enums.menu.SETTINGS
-						capturing = False					
+						capturing = capture.training_save(filename)
+				else:
+					option = enums.menu.SETTINGS					
 			else:
 				option = enums.menu.RETURN
 		else:
