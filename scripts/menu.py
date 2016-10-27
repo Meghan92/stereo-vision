@@ -59,6 +59,16 @@ def training():
 		return enum.train.RECOGNITION
 	elif response == "3":
 		return enum.train.CANCEL
-	
+		
+		
+def settings():
+	display.header("Settings")
+	print "What would you like to do?\n\n"
+	display.number_list(["Capture","Training", "Cancel"])
+	response = raw_input("\nEnter a number (e.g. 1): ")
+	if response == "1":
+		return enum.settings.CAPTURE
+	elif response == "2":
+		return enum.settings.TRAIN
 	
 	

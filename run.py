@@ -52,11 +52,25 @@ while option != enums.menu.QUIT:
 			except ValueError as error:
 				raw_input("Hit enter to continue")	
 		elif option == enums.menu.SETTINGS:
-			training_type = menu.training()
-			if training_type == enums.train.VERIFICATION:
-				verification.train(constants.RESOLUTION)
-			elif training_type == enums.train.RECOGNITION:
-				recognition.train()
+			settings_type = menu.settings()
+			if settings_type == enums.settings.TRAIN:
+				training_type = menu.training()
+				if training_type == enums.train.VERIFICATION:
+					verification.train(constants.RESOLUTION)
+				elif training_type == enums.train.RECOGNITION:
+					recognition.train()
+				else:
+					option = enums.menu.RETURN
+			elif settings_type == enums.settings.CAPTURE:
+				capturing = True
+				while capturing:
+					filename = capture.training()
+					if filename is not None:
+						viewport.show()
+						capture.frontal()
+					else:
+						option = enums.menu.SETTINGS
+						capturing = False					
 			else:
 				option = enums.menu.RETURN
 		else:

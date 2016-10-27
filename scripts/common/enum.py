@@ -12,3 +12,7 @@ class train:
 	
 class capture:
 	FRONTAL = "1"
+	
+class settings:
+	CAPTURE = "1"
+	TRAIN = "2"
