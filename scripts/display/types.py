@@ -3,6 +3,7 @@ import os
 
 
 def header(message):
+	clear()
 	print constants.text.LINE + constants.colour.BLUE + message + constants.colour.ENDC + constants.text.LINE
 	
 

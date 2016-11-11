@@ -13,8 +13,9 @@ def run(_input, _output):
 		[64, 32, 2],
 		learn_rates = 0.3,
 		learn_rate_decays = 0.9,
-		epochs = 10,
-		verbose = 1)
+		epochs = 20,
+		verbose = 1,
+		minibatch_size=1)
 	dbn.fit(_input, _output)
 	current_path = os.path.dirname(__file__)
 	weights_path = os.path.join(current_path, "weights.pkl")

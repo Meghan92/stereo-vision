@@ -15,7 +15,7 @@ def run(resolution):
 		parent_folder = os.path.join(os.path.dirname(__file__), '..')
 		capture_folder = os.path.join(parent_folder, "capture")
 		database_folder = os.path.join(capture_folder, "database")
-		databases = capture_output.get_database_paths()
+		databases = os.listdir(database_folder)
 		count = 0
 		prefix = ""
 		for database in databases:
@@ -30,10 +30,14 @@ def run(resolution):
 				count += 1
 				for image in os.listdir(folder_path):
 					name = image.split(".")[0]
-					old_path = os.path.join(os.path.join("database", database), folder_number)
+					old_path = os.path.join("services","verification","capture", "database", database, folder_number)
 					old_image = os.path.join(old_path, image)					
 					environment_settings = detect_config.Environment(detect_config.Ubuntu(old_image,  prefix + name + "_" + str(count) + ".jpg"))
-					detect.run(environment_settings)
+					try:
+						detect.run(environment_settings)
+					except ValueError as failed_detection:
+						print "- WARNING: Could not recognise face for database {}, number {}".format(database, folder_number)
+						continue							
 		checker.clean_duplicates()
 		print("- Cropping faces")
 		crop.run(resolution)

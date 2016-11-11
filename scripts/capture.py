@@ -74,7 +74,9 @@ def training_save(filename):
 	database_path = os.path.join(capture_path, "database")
 	chosen_path = os.path.join(database_path, filename)
 	directories = os.listdir(chosen_path)
-	index_path = str(max([int(numbers) for numbers in directories]) + 1)
+	index_path = "1"
+	if len(directories) > 0:
+		index_path = str(max([int(numbers) for numbers in directories]) + 1)
 	destination_path = os.path.join(chosen_path, index_path)
 	os.makedirs(destination_path)
 	for images in os.listdir(source_path):

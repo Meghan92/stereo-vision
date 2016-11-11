@@ -32,7 +32,7 @@ def train(resolution):
 	input = raw_input("Would you like to run the training network for the verification database? (y/n): ").lower()
 	if input == "y":
 		ui.header("Preprocessing, please wait patiently...")
-		preprocess_training.run()
+		preprocess_training.run(resolution)
 		process.run(resolution, 1)
 		ui.header("Training")
 		neural_network.run()
@@ -51,5 +51,5 @@ def run(resolution):
 			ui.fail("Your image was not verified")
 		return verified
 	except ValueError as error:
-		ui.fail(error)
+		ui.fail(error.message)
 		return False
