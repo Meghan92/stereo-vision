@@ -29,8 +29,8 @@ def algorithm(face_data):
 	increment_h = int(height / face_data.resolution)
 	increment_w = int(width / face_data.resolution)
 	print("- creating fpb for: " + face_data.name)
-	horizontal_list = loop(increment_h, height, width, face_data.image)
-	vertical_list = loop(increment_w, width, height, face_data.image)
+	horizontal_list = loop_horizontal(increment_h, width, face_data.resolution, face_data.image)
+	vertical_list = loop_vertical(increment_w, height, face_data.resolution, face_data.image) 
 	list = horizontal_list + vertical_list
 	fpb_list = []
 	max = np.amax(list)
@@ -41,21 +41,39 @@ def algorithm(face_data):
 	del fpb_list[:]
 	
 
-def loop(increment, length, breadth, image):
+def loop_horizontal(increment, width, resolution, image):
 	start_val = 0
 	count = 0
 	count_list = []
 	min = -1
 	max = 0
-	while start_val + increment <= length:
-		count = 0
-		for x in range(start_val, start_val + increment):
-			for y in range(0, breadth):
-				item = image[x][y][0]
+	
+	for value in range (0, resolution):
+		for y in range(0, width):
+			for x in range(start_val, start_val + increment):
+				item = int(image[x,y,0] + image[x,y,1] + image[x,y,2]) 
 				count += item
-		start_val += increment
 		count_list.append(count)
+		start_val += increment
 	return count_list
+	
+
+def loop_vertical(increment, height, resolution, image):
+	start_val = 0
+	count = 0
+	count_list = []
+	min = -1
+	max = 0
+	
+	for value in range (0, resolution):
+		for x in range(0, height):
+			for y in range(start_val, start_val + increment):
+				item = int(image[x,y,0] + image[x,y,1] + image[x,y,2])
+				count += item
+		count_list.append(count)
+		start_val += increment
+	return count_list
+	
 	
 
 def normalise(x, min, max):
