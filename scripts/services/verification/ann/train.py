@@ -17,7 +17,7 @@ def run(_input, _output):
 		[64, 200, 2],
 		learn_rates = 0.3,
 		learn_rate_decays = 0.9,
-		epochs = 100,
+		epochs = 20,
 		verbose = 1,
 		minibatch_size=1)
 	dbn.fit(x_train, y_train)
