@@ -19,6 +19,7 @@ def run(resolution):
 	print("- clearing bytes.txt")
 	text = open(byte_path, "w")
 	text.close()
+	print "Creating FPBs"
 	for data in face_data:
 		algorithm(data)
 

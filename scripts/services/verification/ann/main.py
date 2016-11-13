@@ -6,15 +6,16 @@ import ann.train as train
 import numpy as np
 
 
-def run():
+def run(resolution):
 	inputs = format.run()
 	input_array = []
 	output_array = []
 	array_count = 0
 	line = "\n------------------------------------------------------------------------------------------\n"
+	input_nodes= resolution * 2 * 2
 	for array in inputs:
 		array_count += 1
-		if array.__len__() >= 400:
+		if array.__len__() >= input_nodes:
 			temp_array = []
 			temp_array.append(array.pop())
 			output_array.append(temp_array)
@@ -25,4 +26,4 @@ def run():
 	input_array = np.array(input_array)
 	output_array = np.array(output_array)
 
-	train.run(input_array, output_array)
+	train.run(input_array, output_array, input_nodes)

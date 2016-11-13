@@ -35,7 +35,7 @@ def train(resolution):
 		preprocess_training.run(resolution)
 		process.run(resolution, 1)
 		ui.header("Training")
-		neural_network.run()
+		neural_network.run(resolution)
 		
 	
 def run(resolution):
