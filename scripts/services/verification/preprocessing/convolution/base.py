@@ -11,5 +11,6 @@ def convolve(image, file_name):
 	weighted = cv2.addWeighted(abs_sobel_x, 0.5, abs_sobel_y, 0.5, gamma=0)
 	directory = os.path.dirname(os.path.abspath(__file__))
 	location = os.path.join(directory, "output", file_name)
+	resized = cv2.resize(weighted, (95,95))
 	#print "- Writing to " + location
-	cv2.imwrite(location, weighted)
+	cv2.imwrite(location, resized)

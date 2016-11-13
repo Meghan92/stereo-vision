@@ -33,7 +33,7 @@ def train(resolution):
 	if input == "y":
 		ui.header("Preprocessing, please wait patiently...")
 		preprocess_training.run(resolution)
-		process.run(resolution, 1)
+		#process.run(resolution, 1)
 		ui.header("Training")
 		neural_network.run(resolution)
 		

@@ -4,26 +4,34 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import processing.format as format
 import ann.train as train
 import numpy as np
+import preprocessing.convolution.output as output
 
 
 def run(resolution):
-	inputs = format.run()
+	images = output.get(resolution)
+	image_map = {}
+	for image in images:
+		id = image.name.split("_")[0] + image.name.split("_")[1]
+		if id in image_map:
+			image_map[id] += image.image
+		else:
+			image_map[id] = image.image
 	input_array = []
 	output_array = []
-	array_count = 0
-	line = "\n------------------------------------------------------------------------------------------\n"
-	input_nodes= resolution * 2 * 2
-	for array in inputs:
-		array_count += 1
-		if array.__len__() >= input_nodes:
-			temp_array = []
-			temp_array.append(array.pop())
-			output_array.append(temp_array)
-			input_array.append(array)
+	for key, image in image_map.iteritems():
+		input_array.append(flatten_rgb(image))
+		if "spoof" in key:
+			output_array.append(-1)
 		else:
-			print "%sArray length for image %s is too short, discarded.%s" % (line, array_count, line)
+			output_array.append(1)
 		
 	input_array = np.array(input_array)
 	output_array = np.array(output_array)
 
-	train.run(input_array, output_array, input_nodes)
+	train.run(input_array, output_array)
+
+
+def flatten_rgb(image):
+	return image.flatten()/255.0
+		
+		

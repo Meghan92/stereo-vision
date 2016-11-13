@@ -12,4 +12,4 @@ import format
 def run(resolution, train=1):
 	print("Running face pattern byte")
 	fpb.run(resolution)
-	return format.run(train)
+	#return format.run(train)
