@@ -14,7 +14,7 @@ def run():
 	line = "\n------------------------------------------------------------------------------------------\n"
 	for array in inputs:
 		array_count += 1
-		if array.__len__() >= 64:
+		if array.__len__() >= 400:
 			temp_array = []
 			temp_array.append(array.pop())
 			output_array.append(temp_array)

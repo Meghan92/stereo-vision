@@ -19,7 +19,6 @@ def run(resolution):
 	print("- clearing bytes.txt")
 	text = open(byte_path, "w")
 	text.close()
-	
 	for data in face_data:
 		algorithm(data)
 
@@ -28,7 +27,7 @@ def algorithm(face_data):
 	height, width, channels = face_data.image.shape
 	increment_h = int(height / face_data.resolution)
 	increment_w = int(width / face_data.resolution)
-	print("- creating fpb for: " + face_data.name)
+	#print("- creating fpb for: " + face_data.name)
 	horizontal_list = loop_horizontal(increment_h, width, face_data.resolution, face_data.image)
 	vertical_list = loop_vertical(increment_w, height, face_data.resolution, face_data.image) 
 	list = horizontal_list + vertical_list
@@ -44,10 +43,7 @@ def algorithm(face_data):
 def loop_horizontal(increment, width, resolution, image):
 	start_val = 0
 	count = 0
-	count_list = []
-	min = -1
-	max = 0
-	
+	count_list = []	
 	for value in range (0, resolution):
 		for y in range(0, width):
 			for x in range(start_val, start_val + increment):
@@ -61,10 +57,7 @@ def loop_horizontal(increment, width, resolution, image):
 def loop_vertical(increment, height, resolution, image):
 	start_val = 0
 	count = 0
-	count_list = []
-	min = -1
-	max = 0
-	
+	count_list = []	
 	for value in range (0, resolution):
 		for x in range(0, height):
 			for y in range(start_val, start_val + increment):
