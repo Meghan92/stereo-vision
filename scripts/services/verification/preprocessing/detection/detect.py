@@ -17,12 +17,13 @@ def run(environment):
 	i = 0
 	padding=50
 	height, width, channels = img.shape
+	cropped_images = []
 	for (x, y, w, h) in faces:
 		i += 1
 		output_length = environment.output.__len__()
 		output_name = environment.output[0:output_length-4] + "_" + str(i) + ".jpg"
 		crop_img = img[minval(y,padding):maxval(y+h,padding,height), minval(x, padding):maxval(x+w, padding, width)]
-		cv2.imwrite(output_name, crop_img)
+		return FaceData(output_name, crop_img)
 		
 		
 def minval(val, adjustment):
@@ -37,3 +38,10 @@ def maxval(val, adjustment, maxlength):
 	if (val >= maxlength):
 		val = maxlength - 1
 	return val
+	
+	
+class FaceData(object):
+    """__init__() functions as the class constructor"""
+    def __init__(self, name=None, image=None):
+        self.name = name
+        self.image = image

@@ -14,10 +14,10 @@ def run(_input, _output):
 
 	x_train, x_test, y_train, y_test = 	train_test_split(_input, _output, test_size=0.33, random_state=42)
 	dbn = DBN(
-		[64, 200, 2],
-		learn_rates = 0.3,
+		[1000, 500, 2],
+		learn_rates = 0.1,
 		learn_rate_decays = 0.9,
-		epochs = 20,
+		epochs = 50,
 		verbose = 1,
 		minibatch_size=1)
 	dbn.fit(x_train, y_train)

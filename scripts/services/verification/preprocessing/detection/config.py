@@ -4,7 +4,7 @@ class Environment(object):
     def __init__(self, env_type):
         self.haar_xml = env_type.haar + "haarcascade_frontalface_default.xml"
         self.capture = env_type.path + env_type.input
-        self.output = env_type.path + "services/verification/preprocessing/detection/output/" + env_type.output
+        self.output = env_type.path + "services/verification/preprocessing/convolution/output/" + env_type.output
 
 
 class Windows(object):

@@ -9,7 +9,7 @@ output_path = os.path.join(current_path, "output")
 byte_path = os.path.join(output_path, "bytes.txt")
 
 
-def run(resolution=4):
+def run(resolution):
 	print("- using resolution size of: " + str(resolution))
 	print("- getting faces")
 	face_data = output.get(resolution)

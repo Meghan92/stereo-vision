@@ -18,6 +18,7 @@ def run(resolution):
 		databases = os.listdir(database_folder)
 		count = 0
 		prefix = ""
+		face_data = []
 		for database in databases:
 			if "spoof" in database:
 				prefix = "spoof"
@@ -34,15 +35,15 @@ def run(resolution):
 					old_image = os.path.join(old_path, image)					
 					environment_settings = detect_config.Environment(detect_config.Ubuntu(old_image,  prefix + name + "_" + str(count) + ".jpg"))
 					try:
-						detect.run(environment_settings)
+						face_data.append(detect.run(environment_settings))
 					except ValueError as failed_detection:
 						print "- WARNING: Could not recognise face for database {}, number {}".format(database, folder_number)
 						continue							
 		checker.clean_duplicates()
-		print("- Cropping faces")
-		crop.run(resolution)
+		#print("- Cropping faces")
+		#crop.run(resolution)
 		print("- Convolving")
-		verify.run()
+		verify.run(face_data)
 	except ReferenceError as refError:
 		print("A reference occurred: " + refError.message)
 

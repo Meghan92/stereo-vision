@@ -3,7 +3,7 @@ import cv2
 
 
 # returns an array of images in the output folder with a specified fpb resolution
-def get(resolution=4):
+def get(resolution):
     path = os.path.dirname(os.path.realpath(__file__))
     output_path = os.path.join(path, "output")
     images = []
