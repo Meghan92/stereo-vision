@@ -1,2 +1,1 @@
-*.jpg
 !scripts/services/verification/preprocessing/convolution/output/*.jpg
