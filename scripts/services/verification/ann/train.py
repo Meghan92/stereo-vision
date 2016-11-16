@@ -1,42 +1,70 @@
-from sklearn.cross_validation import train_test_split
-from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
-from sklearn import datasets
-from sklearn.datasets import fetch_mldata
-from nolearn.dbn import DBN
-#from nolearn.lasagne import NeuralNet
-import numpy as np
-import cv2
+from nolearn.lasagne import NeuralNet
+from lasagne import layers
+from lasagne.updates import nesterov_momentum
 import cPickle as pickle
 import os
-
+import lasagne
 
 
 def run(_input, _output):
-	#mnist = fetch_mldata('MNIST original')
-	#x_train, x_test, y_train, y_test = 	train_test_split(mnist.data/255.0, mnist.target)
-	x_train, x_test, y_train, y_test = 	train_test_split(_input, _output)
-	neuralnet_structure = []
-	neuralnet_structure.append(x_train.shape[1])
-	for x in range(0, 2):
-		neuralnet_structure.append(100)
-	neuralnet_structure.append(-1)
-	dbn = DBN(
-		neuralnet_structure,
-		learn_rates = 0.3,
-		learn_rate_decays = 0.9,
-		epochs = 10,
-		verbose = 1,
-		minibatch_size=10)
-	#dbn = NeuralNet(		
-	dbn.fit(x_train, y_train)
-	current_path = os.path.dirname(__file__)
-	weights_path = os.path.join(current_path, "weights.pkl")
-	save_object(dbn, weights_path)
-	preds = dbn.predict(x_test)
-	print classification_report(y_test, preds)
-	print confusion_matrix(y_test, preds)
+    dbn = NeuralNet(
+        layers=[('input1', layers.InputLayer),
+                ('input2', layers.InputLayer),
+                ('hidden', layers.DenseLayer),
+                ('hidden1', layers.DenseLayer),
+                ('output', layers.DenseLayer)],
+        # layer parameters:
+        input1_shape=(None, 3, 95, 95),
+        input2_shape=(None, 3, 95, 95),
+        output_nonlinearity=lasagne.nonlinearities.sigmoid,  # output layer uses identity function
+        output_num_units=1,  # 2 target values
+        hidden_num_units=2000,  # number of units in hidden layer
+        hidden1_num_units=1000,  # number of units in hidden layer
+
+        # optimization method:
+        update=nesterov_momentum,
+        update_learning_rate=0.01,
+        update_momentum=0.9,
+
+        regression=True,  # flag to indicate we're dealing with regression problem
+        max_epochs=100,  # we want to train this many epochs
+        verbose=1,
+    )
+    dbn.fit({"input": _input[0], "input2": _input[1]}, _output)
+    current_path = os.path.dirname(__file__)
+    weights_path = os.path.join(current_path, "weights.pkl")
+    save_object(dbn, weights_path)
 
 
 def save_object(obj, filename):
-	with open(filename, 'wb') as output:
-		pickle.dump(obj, output, pickle.HIGHEST_PROTOCOL)
+    with open(filename, 'wb') as output:
+        pickle.dump(obj, output, pickle.HIGHEST_PROTOCOL)
+
+
+def print_report(raw_predictions, expected_output):
+    i = 0
+    fake_images = []
+    real_images = []
+    for raw_prediction in raw_predictions:
+        raw_prediction = round(raw_prediction)
+        if expected_output[i] == -1:
+            prediction = 1
+            if raw_prediction == 1:  # if a true image is predicted
+                prediction = 0  # add prediction count as 0
+            fake_images.append(prediction)
+        elif expected_output[i] == 1:
+            prediction = 1
+            if raw_prediction == 0:  # if a fake image is predicted
+                prediction = 0  # add prediction count as 0
+            real_images.append(prediction)
+        else:
+            raise ValueError("Unexpected value for expected output: {}".format(expected_output[i]))
+        i += 1
+    print real_images
+    print fake_images
+    print "Number of fake images: {}".format(fake_images.__len__())
+    print "Number of real images: {}".format(real_images.__len__())
+    fake_percentage = round(sum(fake_images) / fake_images.__len__() * 100.0)
+    real_percentage = round(sum(real_images) / real_images.__len__() * 100.0)
+    print "Percentage accuracy for fake images: {}".format(fake_percentage)
+    print "Percentage accuracy for real images: {}".format(real_percentage)
