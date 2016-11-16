@@ -1,4 +1,0 @@
-*.jpg
-*.pyc
-scripts/services/verification/preprocessing/convolution/output/**
-scripts/services/verification/preprocessing/detection/output/**
